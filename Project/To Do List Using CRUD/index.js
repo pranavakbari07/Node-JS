@@ -1,14 +1,9 @@
 const express = require("express")
-const port = 2438;
+const port = 1008;
 
 const app = express()
 
 let arr = []
-
-// app.get("/",(req,res)=>{
-//     res.write("<h1>Hello World</h1>")
-//     res.end()
-// })
 
 app.set("view engine","ejs")
 app.use(express.urlencoded({extended:true}))
@@ -26,16 +21,6 @@ app.post("/addData",(req,res)=>{
     res.redirect("/")
 })
 
-app.get("/about",(req,res)=>{
-    res.render("about")
-})
-app.get("/contact",(req,res)=>{
-    res.render("contact")
-})
-
-
-
-
 app.get("/deleteData/:id",(req,res)=>{
     let newData = arr.filter((item)=> item.id != req.params.id)
     arr = newData
@@ -49,10 +34,12 @@ app.get("/editData",(req,res)=>{
 
 app.post("/updateData",(req,res)=>{
     let singleData =  arr.find((item)=> item.id == req.body.id)
-    singleData.name = req.body.name
-    singleData.age = req.body.age
-    singleData.city = req.body.city
-    
+    singleData.task = req.body.task
+    singleData.description = req.body.description
+    singleData.priority = req.body.priority
+    singleData.dueDate = req.body.dueDate
+    singleData.status = req.body.status
+
     res.redirect("/")
 })
 
