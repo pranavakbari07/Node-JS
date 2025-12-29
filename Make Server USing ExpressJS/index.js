@@ -6,10 +6,6 @@ const app = express()
 
 let arr = []
 
-// app.get("/",(req,res)=>{
-//     res.write("<h1>Hello World</h1>")
-//     res.end()
-// })
 
 app.set("view engine","ejs")
 app.use(express.urlencoded({extended:true}))

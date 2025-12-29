@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Hello from ExpressJS</h1>
+
+    <form action="/addData" method="post">
+        <input type="text" name="name" placeholder="Enter Your name">
+        <input type="text" name="age" placeholder="Enter Your age">
+        <input type="text" name="city" placeholder="Enter Your city">
+        <button type="submit">Submit</button>
+    </form>
+
+    <%arr.map((e,i)=>{%>
+        <ul>
+            <li><%=e.name%></li>
+            <li><%=e.age%></li>
+            <li><%=e.city%></li>
+            <li><a href="/editData/<%=e.id%>"><button>Edit</button></a></li>
+            <li><a href="/deleteData/<%=e.id%>"><button>Delete</button></a></li>
+        </ul>
+    <%})%>
+
+
+</body>
+
+</html>
