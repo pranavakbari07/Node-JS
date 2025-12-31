@@ -1,6 +1,5 @@
 const express = require("express")
 const port = 2438;
-const path = require("path")
 
 const app = express()
 
@@ -9,18 +8,13 @@ let arr = []
 
 app.set("view engine","ejs")
 app.use(express.urlencoded({extended:true}))
-app.use("/",express.static(path.join(__dirname,"public")))
 
-const middleware = (req,res,next)=>{
-    console.log("This is middleware");
-    next()
-}
 
 app.get("/",(req,res)=>{
     res.render("index",{arr})
 })
 
-app.post("/addData",middleware,(req,res)=>{
+app.post("/addData",(req,res)=>{
     let obj = {
         id : Date.now(),
         ...req.body
@@ -35,7 +29,6 @@ app.get("/about",(req,res)=>{
 app.get("/contact",(req,res)=>{
     res.render("contact")
 })
-
 
 
 
