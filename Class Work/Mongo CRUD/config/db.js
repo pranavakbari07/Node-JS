@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1/NodeGIM")
+mongoose.connect("mongodb://localhost:27017/NodeGIM")
 
 const db = mongoose.connection;
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+</head>
+<body>
+    <h1>Add Book Details</h1>
+    <form action="/addData" method="post">
+        <input type="text" name="name" placeholder="Enter Book Name" required>
+        <input type="text" name="author" placeholder="Enter Author Name" required>
+        <input type="number" name="quantity" placeholder="Enter Your Book Quantity" required>
+        <input type="number" name="price" placeholder="Enter Book Price" required>
+        <input type="submit" style="cursor: pointer" value="Add Book">
+    </form>
+
+    <br><br>
+
+    <table style="text-align: center; width: 40%;">
+        <tr>
+            <th style="border: 1px solid black; padding: 3px 8px;">Book Name</th>
+            <th style="border: 1px solid black; padding: 3px 8px;">Author Name</th>
+            <th style="border: 1px solid black; padding: 3px 8px;">Quantity</th>
+            <th style="border: 1px solid black; padding: 3px 8px;">Price</th>
+            <th style="border: 1px solid black; padding: 3px 8px;" colspan="2">Actions</th>
+        </tr>
+        <%data.map((e,i)=>{%>
+            <tr>
+                <td style="border: 1px solid black; padding: 3px 8px;"><%=e.name%></td>
+                <td style="border: 1px solid black; padding: 3px 8px;"><%=e.author%></td>
+                <td style="border: 1px solid black; padding: 3px 8px;"><%=e.quantity%></td>
+                <td style="border: 1px solid black; padding: 3px 8px;"><%=e.price%></td>
+                <td style="border: 1px solid black; padding: 3px 8px;"><a href="/editData?id=<%=e.id%>"><button style="cursor: pointer">Edit</button></a></td>
+                <td style="border: 1px solid black; padding: 3px 8px;"><a href="/deleteData?id=<%=e.id%>"><button style="cursor: pointer">Delete</button></a></td>
+            </tr>
+        <%})%>
+    </table>
+</body>
+</html>

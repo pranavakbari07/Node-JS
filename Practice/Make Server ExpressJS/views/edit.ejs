@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit Page in Express JS</h1>
+
+    <form action="/updateData" method="post">
+        <input type="text" name="id" value="<%=singleData.id%>" hidden>
+        <input type="text" name="name" value="<%=singleData.name%>" placeholder="Enter Your name">
+        <input type="text" name="age" value="<%=singleData.age%>" placeholder="Enter Your age">
+        <input type="text" name="city" value="<%=singleData.city%>" placeholder="Enter Your city">
+        <button type="submit">updateData</button>
+    </form>
+</body>
+</html>
