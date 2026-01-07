@@ -146,3 +146,40 @@ Nodemon is a tool that automatically restarts your Node.js application when file
 }
 
 To render HTML files using Express.js, store your EJS files in a views directory and use the .ejs extension.
+
+
+Temeplate Engines in Node JS : Node.JS enables you to use statc template files and inject dynamic data at runtime to generate HTML markup sent to the client's browser. 
+
+Example : EJS ,Pug ,Handlebirds.js ,Nunjicks
+
+
+What is DataBase ? 
+
+=> Database is an organized, electronic collection of structured data designed for efficient storage, retrieval,management and updating by multiple users or application, typically controlled by a Database Management Syayem (DBMS).
+
+
+Type of Database : 
+
+1) Relactional Database (SQL = Structured Query Language) (EX : MySQL,PostgreSQL)
+2) NoRelactional Database (NOSQL) 
+
+Other Type :
+
+3) Hierarchical 
+4) Cloud
+5) Object Oriented Database (OOD)
+
+
+
+MVC in Node JS 
+
+   MVC(Model-view-Controller) is a software design patten that separates an application into three interconnected parts : the Model(Data & Logic),the view(User interface),and the controller(handle input & Model/View). 
+
+
+
+
+
+
+
+
+
