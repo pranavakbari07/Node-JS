@@ -5,24 +5,11 @@ module.exports.login = (req, res) => {
 };
 
 module.exports.loginAdmin = async (req,res)=>{
-    let admin = await Schema.findOne({email : req.body.email})
-    if(!admin){
-        res.redirect("/")
-    }
-    if(admin.password == req.body.password){
-        res.cookie("admin",admin)
-        res.redirect("/dashbord")
-    }else{
-        res.redirect("/")
-    }
+    res.redirect("/dashbord")
 }
 
 module.exports.dashbord = (req, res) => {
-    if(req.cookies.admin){
-        res.render("dashbord");
-    }else{
-        res.redirect("/")
-    }
+    res.render("dashbord");
 };
 
 module.exports.logout = (req,res)=>{
