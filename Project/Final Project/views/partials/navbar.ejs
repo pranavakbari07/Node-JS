@@ -1,0 +1,33 @@
+<nav class="sticky top-0 z-50 w-full backdrop-blur-xl bg-zinc-900/80 border-b border-zinc-800">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <a href="/articles" class="text-xl font-bold text-amber-400 hover:text-amber-300 transition-colors font-serif">Blog</a>
+      <ul class="hidden md:flex items-center gap-6">
+        <li><a href="/articles" class="text-zinc-400 hover:text-amber-400 transition-colors font-medium">All Articles</a></li>
+        <% if (typeof user !== 'undefined' && user) { %>
+        <li><a href="/articles/my" class="text-zinc-400 hover:text-amber-400 transition-colors font-medium">My Articles</a></li>
+        <li><a href="/articles/new" class="text-zinc-400 hover:text-amber-400 transition-colors font-medium">New Article</a></li>
+        <li><span class="text-zinc-500 text-sm"><%= user.name %></span></li>
+        <li><a href="/logout" class="px-4 py-2 rounded-lg bg-zinc-800 text-zinc-300 hover:bg-zinc-700 transition-colors">Sign Out</a></li>
+        <% } else { %>
+        <li><a href="/login" class="text-zinc-400 hover:text-amber-400 transition-colors font-medium">Login</a></li>
+        <li><a href="/register" class="px-4 py-2 rounded-lg bg-amber-500 text-zinc-900 font-medium hover:bg-amber-400 transition-colors">Register</a></li>
+        <% } %>
+      </ul>
+      <button class="nav-toggle md:hidden p-2 text-zinc-400 hover:text-white" aria-label="Toggle menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <ul class="nav-links md:hidden py-4 space-y-2 border-t border-zinc-800 hidden">
+      <li><a href="/articles" class="block py-2 text-zinc-400 hover:text-amber-400">All Articles</a></li>
+      <% if (typeof user !== 'undefined' && user) { %>
+      <li><a href="/articles/my" class="block py-2 text-zinc-400 hover:text-amber-400">My Articles</a></li>
+      <li><a href="/articles/new" class="block py-2 text-zinc-400 hover:text-amber-400">New Article</a></li>
+      <li><a href="/logout" class="block py-2 text-zinc-400 hover:text-amber-400">Sign Out</a></li>
+      <% } else { %>
+      <li><a href="/login" class="block py-2 text-zinc-400 hover:text-amber-400">Login</a></li>
+      <li><a href="/register" class="block py-2 text-amber-400 font-medium">Register</a></li>
+      <% } %>
+    </ul>
+  </div>
+</nav>

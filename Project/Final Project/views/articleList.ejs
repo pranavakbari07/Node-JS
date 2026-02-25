@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
+  <%- include('partials/navbar') %>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+    <h1 class="text-3xl font-bold text-white font-serif mb-8">All Articles</h1>
+    <div class="grid gap-6">
+      <% articles.forEach(article => { %>
+      <article class="group bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-2xl p-6 hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/5 transition-all duration-300">
+        <h2 class="text-xl font-semibold text-white mb-2 font-serif group-hover:text-amber-400 transition-colors">
+          <a href="/articles/<%= article._id %>"><%= article.title %></a>
+        </h2>
+        <p class="text-sm text-zinc-500 mb-3">By <%= article.author ? article.author.name : 'Unknown' %> • <%= new Date(article.createdAt).toLocaleDateString() %></p>
+        <p class="text-zinc-400 leading-relaxed"><%= article.content.substring(0, 150) %><%= article.content.length > 150 ? '...' : '' %></p>
+      </article>
+      <% }); %>
+    </div>
+    <% if (articles.length === 0) { %>
+    <div class="text-center py-16 px-6 rounded-2xl bg-zinc-900/40 border border-zinc-800 border-dashed">
+      <p class="text-zinc-500 text-lg mb-2">No articles yet.</p>
+      <p class="text-zinc-600">Be the first to write one! <a href="/register" class="text-amber-400 hover:text-amber-300 font-medium">Register</a> to get started.</p>
+    </div>
+    <% } %>
+  </main>
+  <script src="/js/navbar.js"></script>
+</body>
+</html>

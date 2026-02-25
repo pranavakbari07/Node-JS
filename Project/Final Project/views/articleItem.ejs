@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
+  <%- include('partials/navbar') %>
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+    <article class="bg-zinc-900/60 backdrop-blur-sm border border-zinc-800 rounded-2xl p-8 shadow-xl">
+      <h1 class="text-3xl font-bold text-white font-serif mb-3"><%= article.title %></h1>
+      <p class="text-zinc-500 text-sm mb-6">By <%= article.author ? article.author.name : 'Unknown' %> • <%= new Date(article.createdAt).toLocaleDateString() %></p>
+      <% const authorId = article.author && (article.author._id || article.author); if (user && authorId && (String(authorId) === String(user._id) || user.role === 'admin')) { %>
+      <div class="flex gap-2 mb-6">
+        <a href="/articles/<%= article._id %>/edit" class="px-4 py-2 rounded-lg border border-zinc-600 text-zinc-300 hover:border-amber-500 hover:text-amber-400 transition-colors text-sm font-medium">Edit</a>
+        <form method="POST" action="/articles/<%= article._id %>?_method=DELETE" class="inline" onsubmit="return confirm('Delete this article?');">
+          <button type="submit" class="px-4 py-2 rounded-lg border border-red-500/50 text-red-400 hover:bg-red-500/20 transition-colors text-sm font-medium">Delete</button>
+        </form>
+      </div>
+      <% } %>
+      <div class="text-zinc-300 leading-relaxed whitespace-pre-wrap"><%= article.content %></div>
+
+      <section class="mt-12 pt-8 border-t border-zinc-800">
+        <h2 class="text-xl font-semibold text-white font-serif mb-4">Comments</h2>
+        <% if (user) { %>
+        <form method="POST" action="/articles/<%= article._id %>/comments" class="mb-6">
+          <textarea name="content" placeholder="Write a comment..." rows="3" required
+            class="w-full px-4 py-3 rounded-xl bg-zinc-800/80 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all mb-3 resize-none"></textarea>
+          <button type="submit" class="px-4 py-2 rounded-xl bg-amber-500 text-zinc-900 font-medium hover:bg-amber-400 transition-colors">Add Comment</button>
+        </form>
+        <% } else { %>
+        <p class="text-zinc-500 mb-6"><a href="/login" class="text-amber-400 hover:text-amber-300 font-medium">Log in</a> to leave a comment.</p>
+        <% } %>
+        <ul class="space-y-4">
+          <% (article.comments || []).forEach(comment => { %>
+          <li class="p-4 rounded-xl bg-zinc-800/50 border border-zinc-700/50">
+            <p class="text-zinc-300 mb-2"><%= comment.content %></p>
+            <p class="text-sm text-zinc-500 flex items-center gap-2 flex-wrap">
+              — <%= comment.author ? comment.author.name : 'Unknown' %> • <%= new Date(comment.createdAt).toLocaleDateString() %>
+              <% if (user && comment.author && (String(comment.author._id) === String(user._id) || user.role === 'admin')) { %>
+              <form method="POST" action="/articles/<%= article._id %>/comments/<%= comment._id %>?_method=DELETE" class="inline" onsubmit="return confirm('Delete comment?');">
+                <button type="submit" class="text-red-400/80 hover:text-red-400 text-xs">Delete</button>
+              </form>
+              <% } %>
+            </p>
+          </li>
+          <% }); %>
+        </ul>
+        <% if (!article.comments || article.comments.length === 0) { %>
+        <p class="text-zinc-600 italic">No comments yet.</p>
+        <% } %>
+      </section>
+    </article>
+  </main>
+  <script src="/js/navbar.js"></script>
+</body>
+</html>

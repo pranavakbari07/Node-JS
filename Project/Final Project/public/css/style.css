@@ -1,0 +1,4 @@
+/* Minimal overrides - Tailwind handles most styling */
+body {
+  font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+}
